@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+}
+
+h1 {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
+
+a {
+    text-decoration: none;
+    display: inline;
+}
+
+img {
+    width: 12rem;
+    display: block;
+    margin: auto
+}
+
+/* utilities */
+/* box底下的容器使用這個設定（ .box > *） */
+/* .box>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.box {
+    background-color: skyblue;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1.8rem;
+}
+
+
+.grid {
+
+    border-radius: 0.5rem;
+
+    justify-content: center;
+    display: grid;
+
+    /* 每一行要分幾格 */
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+
+
+    /* 格和格的間距 */
+    grid-gap: 2rem;
+
+}
+
+
+.grid-col {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    /* width: 90%;
+    height: 100%; */
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.4rem 0 1.2rem 0;
+
+}
+
+.grid-img {}
+
+.grid-text {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, minmax(20rem, max-content));
+    }
+}
