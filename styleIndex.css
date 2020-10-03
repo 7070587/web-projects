@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +7,7 @@
 }
 
 body {
+    font-family: 'Open Sans', 'sans-serif';
     padding: 1rem;
 }
 
@@ -51,7 +54,7 @@ img {
 
 
     /* 格和格的間距 */
-    grid-gap: 2rem;
+    gap: 2rem;
 
 }
 
