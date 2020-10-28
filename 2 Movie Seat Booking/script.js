@@ -12,14 +12,33 @@ let tickitPrice = +movieSelected.value;
 function updatSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.seat__selected");
 
+  // when refresh page, all selected data should show again
+  // 1. copy selected seats into an array
+  // 2. map through array
+  // 3. return a new array indexes
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+  // 4. savt to localStorage
+  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * tickitPrice;
 }
 
+// save selected movie index and price
+function setMoviedata(movieIndex, moviePrice) {
+  localStorage.setItem("selectedMovieIndex", movieIndex);
+  localStorage.setItem("selectedMoviePrice", moviePrice);
+}
+
 // movie click event
 movieSelected.addEventListener("change", (e) => {
   tickitPrice = +e.target.value;
+  // e.target.selectedIndex --> can get select option's index
+  // e.target.value --> can get select option's value
+  setMoviedata(e.target.selectedIndex, e.target.value);
+
   updatSelectedCount();
 });
 
