@@ -18,16 +18,33 @@ function updatePlayIcon() {
 
 // update progress and timestamp
 function updateProgress() {
-  return true;
+  // progress
+  // video length: video.duration
+  // video current time: video.currentTime
+  // input range thumb can move with play time
+  progress.value = (video.currentTime / video.duration) * 100;
+
+  // timestamp
+  // 1.get minutes
+  let minutes = Math.floor(video.currentTime / 60);
+  minutes = minutes < 10 ? minutes.toString().padStart(2, 0) : minutes;
+
+  // 2.get seconds
+  let seconds = Math.floor(video.currentTime % 60);
+  seconds = seconds < 10 ? seconds.toString().padStart(2, 0) : seconds;
+
+  // put into
+  timestamp.innerHTML = `${minutes}:${seconds}`;
 }
 
 // set video tome to progress
 function setVideoProgress() {
-  return true;
+  video.currentTime = (+progress.value * video.duration) / 100;
 }
 
 // stop video
 function stopVideo() {
+  // video current time
   video.currentTime = 0;
   video.pause();
 }
