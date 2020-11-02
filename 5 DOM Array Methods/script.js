@@ -83,3 +83,17 @@ function filterbyMillionaires() {
 }
 
 showMillionairesBtn.addEventListener("click", filterbyMillionaires);
+
+// click Calculate Wealth
+function calculateWealth() {
+  // calculate wealth
+  const wealth = data.reduce((acc, item) => (acc += item.money), 0);
+
+  // show in web
+  console.log("wealth => ", wealth);
+  const wealthEle = document.createElement("div");
+  wealthEle.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(wealth)}</strong></h3>`;
+  main.appendChild(wealthEle);
+}
+
+calculateWealthBtn.addEventListener("click", calculateWealth);

@@ -63,7 +63,7 @@ h2 {
 
 h3 {
     background-color: #fff;
-    border-bottom: 1px solid #111;
+    border-bottom: 2px solid #aaa;
     display: flex;
     justify-content: space-between;
     font-weight: 400;
