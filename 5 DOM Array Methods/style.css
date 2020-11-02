@@ -38,6 +38,10 @@ button {
     font-weight: bold;
 }
 
+button:hover {
+    background-color: #e8e8e8;
+}
+
 button:focus {
     outline: none;
     border: 1px solid #aaa;
