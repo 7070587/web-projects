@@ -67,3 +67,11 @@ function doubleMoney() {
 }
 
 doubleBtn.addEventListener("click", doubleMoney);
+
+// click Sort by Richest
+function sortByRichest() {
+  data.sort((a, b) => b.money - a.money);
+  updateDOM(data);
+}
+
+sortBtn.addEventListener("click", sortByRichest);
