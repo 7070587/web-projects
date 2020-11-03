@@ -39,4 +39,6 @@ button:hover {
     color: var(--secondary-color);
 }
 
-.btn-submit {}
+.btn-submit {
+    margin: auto;
+}
