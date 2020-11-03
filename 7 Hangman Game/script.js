@@ -45,12 +45,32 @@ displayWord();
 // show notification
 function showNotification() {
   notification.classList.add("show");
-  setTimeout(() => notification.classList.remove("show"), timeout);
+  setTimeout(() => notification.classList.remove("show"), 2000);
 }
 
 // update wrong letters elememt
 function updateWrongLettersElememt() {
-  console.log("updateWrongLettersElememt => ");
+  // show wrong letters
+  wrongLettersEle.innerHTML = `
+    ${wrongLetters.length > 0 ? "<p>Wrong</p>" : ""}
+    ${wrongLetters.map((letter) => `<span>${letter}</span>`)}
+    `;
+
+  // drow svg - show people part
+  figureParts.forEach((part, index) => {
+    const errors = wrongLetters.length;
+    if (index < errors) {
+      part.style.display = "block";
+    } else {
+      part.style.display = "none";
+    }
+  });
+
+  // check if lose, after lose game, show popup
+  if (wrongLetters.length === figureParts.length) {
+    finalMessage.innerText = "Unfortunately you lost. 😕";
+    popupContainerEle.style.display = "flex";
+  }
 }
 
 // keydown letter press
@@ -58,7 +78,6 @@ window.addEventListener("keydown", (e) => {
   //   console.log(" => ", e.key);
   const regex = /[a-z]/i;
   if (regex.test(e.key)) {
-    console.log(" => ", 123);
     const letter = e.key;
     if (selectedWord.includes(letter)) {
       // push correct letter in correctLetters, if this letter is not in correctLetters
@@ -81,4 +100,22 @@ window.addEventListener("keydown", (e) => {
       }
     }
   }
+});
+
+// play again game
+playAgainBtn.addEventListener("click", () => {
+  // empty arrays, use splice(0)
+  correctLetters.splice(0);
+  wrongLetters.splice(0);
+
+  // update selectedWord
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+
+  displayWord();
+
+  // clear wrong letters
+  updateWrongLettersElememt();
+
+  // hide people figure part
+  popupContainerEle.style.display = "none";
 });
