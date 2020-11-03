@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>6 Menu Slider Modal - My Landing Page</title>
 </head>
 
@@ -28,15 +28,15 @@
 
     <!-- header -->
     <header>
-        <button id="toggle" class="toggle">
+        <button id="toggle" class="btn-toggle">
             <i class="fa fa-bars fa-2x"></i>
         </button>
 
-        <h1>My Landing Page</h1>
+        <h1 class="header__title">My Landing Page</h1>
 
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum, magnam. </p>
+        <p class="header__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum, magnam. </p>
 
-        <button class="cta-btn" id="open">Sign Up</button>
+        <button class="btn-signin" id="open">Sign Up</button>
     </header>
 
     <!-- main -->
@@ -80,38 +80,38 @@
     <!-- modal -->
     <div class="modal__container" id="modal">
         <div class="modal">
-            <button class="close-btn" id="close">
+            <button class="btn-close" id="close">
                 <i class="fa fa-times"></i>
             </button>
 
             <div class="modal__header">
-                <h3>Sign Up</h3>
+                <h3 class="modal__header-title">Sign Up</h3>
             </div>
 
             <div class="modal__content">
                 <p>Register with us to get offers, support and more</p>
                 <form class="modal__form">
-                    <div>
-                        <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Enter Name" class="form-input" />
+                    <div class="modal__form-content">
+                        <label for="name" class="modal__form-label">Name</label>
+                        <input type="text" id="name" placeholder="Enter Name" class="modal__form-input" />
                     </div>
 
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Enter Email" class="form-input" />
+                    <div class="modal__form-content">
+                        <label for="email" class="modal__form-label">Email</label>
+                        <input type="email" id="email" placeholder="Enter Email" class="modal__form-input" />
                     </div>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter Password" class="form-input" />
+                    <div class="modal__form-content">
+                        <label for="password" class="modal__form-label">Password</label>
+                        <input type="password" id="password" placeholder="Enter Password" class="modal__form-input" />
                     </div>
 
-                    <div>
-                        <label for="password2">Confirm Password</label>
-                        <input type="password" id="password2" placeholder="Confirm Password" class="form-input" />
+                    <div class="modal__form-content">
+                        <label for="password2" class="modal__form-label">Confirm Password</label>
+                        <input type="password" id="password2" placeholder="Confirm Password" class="modal__form-input" />
                     </div>
 
-                    <input type="submit" value="Submit" class="submit-btn" />
+                    <button class="btn-submit">Submit</button>
                 </form>
             </div>
         </div>
