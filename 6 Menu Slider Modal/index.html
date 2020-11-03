@@ -36,7 +36,7 @@
 
         <p class="header__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum, magnam. </p>
 
-        <button class="btn-signin" id="open">Sign Up</button>
+        <button class="btn-signin" id="show-modal">Sign Up</button>
     </header>
 
     <!-- main -->
@@ -80,7 +80,7 @@
     <!-- modal -->
     <div class="modal__container" id="modal">
         <div class="modal">
-            <button class="btn-close" id="close">
+            <button class="btn-close" id="close-modal">
                 <i class="fa fa-times"></i>
             </button>
 
@@ -108,10 +108,13 @@
 
                     <div class="modal__form-content">
                         <label for="password2" class="modal__form-label">Confirm Password</label>
-                        <input type="password" id="password2" placeholder="Confirm Password" class="modal__form-input" />
+                        <input type="password" id="password2" placeholder="Confirm Password"
+                            class="modal__form-input" />
                     </div>
 
-                    <button class="btn-submit">Submit</button>
+                    <div class="modal__form-button">
+                        <button class="btn-submit">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
