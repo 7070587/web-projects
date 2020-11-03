@@ -9,7 +9,7 @@ nav {
     width: 12.5rem;
     height: 100vh;
     z-index: 10;
-    /* transform: translateX(-100%); */
+    transform: translateX(-100%);
 }
 
 .nav__logo {

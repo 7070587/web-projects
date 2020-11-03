@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 @import 'nav.css';
+@import 'header.css';
+@import 'button.css';
+@import 'container.css';
+@import 'modal.css';
 
 :root {
     --modal-duration: 1s;
     --primary-color: #30336b;
-    --secondary-color: #be2edd;
+    --secondary-color: #18dcff;
 }
 
 * {
