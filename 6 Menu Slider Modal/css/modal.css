@@ -8,6 +8,10 @@
     bottom: 0;
 }
 
+.modal__container--show {
+    display: block;
+}
+
 .modal {
     background-color: #fff;
     border-radius: 0.5rem;
@@ -19,6 +23,8 @@
     transform: translate(-50%, -50%);
     max-width: 100%;
     width: 25rem;
+    animation-name: modalOpen;
+    animation-duration: var(--modal-duration);
 }
 
 .modal__header {
@@ -54,4 +60,18 @@
 .modal__form-input:focus {
     outline: 0;
     border: 2px solid #2d98da;
+}
+
+.modal__form-button {
+    display: flex;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
