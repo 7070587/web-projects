@@ -79,24 +79,27 @@ window.addEventListener("keydown", (e) => {
   const regex = /[a-z]/i;
   if (regex.test(e.key)) {
     const letter = e.key;
-    if (selectedWord.includes(letter)) {
-      // push correct letter in correctLetters, if this letter is not in correctLetters
-      if (!correctLetters.includes(letter)) {
-        correctLetters.push(letter);
-        displayWord();
+    // check is letter or letters
+    if (letter.length === 1) {
+      if (selectedWord.includes(letter)) {
+        // push correct letter in correctLetters, if this letter is not in correctLetters
+        if (!correctLetters.includes(letter)) {
+          correctLetters.push(letter);
+          displayWord();
+        } else {
+          // this correct letter is already in correctLetters, then show this letter
+          showNotification();
+        }
       } else {
-        // this correct letter is already in correctLetters, then show this letter
-        showNotification();
-      }
-    } else {
-      // this not correct push to wrongLetters
-      // push not correct letter in wrongLetters, if this letter is not in wrongLetters
-      if (!wrongLetters.includes(letter)) {
-        wrongLetters.push(letter);
-        updateWrongLettersElememt();
-      } else {
-        // this correct letter is already in correctLetters, then show this letter
-        showNotification();
+        // this not correct push to wrongLetters
+        // push not correct letter in wrongLetters, if this letter is not in wrongLetters
+        if (!wrongLetters.includes(letter)) {
+          wrongLetters.push(letter);
+          updateWrongLettersElememt();
+        } else {
+          // this correct letter is already in correctLetters, then show this letter
+          showNotification();
+        }
       }
     }
   }
