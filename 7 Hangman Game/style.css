@@ -5,7 +5,25 @@
 body {
     background-color: #34495e;
     color: #fff;
-    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 1.25em 0 0.5rem 0;
+}
+
+.game-container {
+    padding: 1.25rem 2rem;
+    position: relative;
+    margin: auto;
+    height: 22rem;
+    width: 28rem;
 }
 
 /* svg */
@@ -19,4 +37,40 @@ body {
 
 .figure-part {
     display: none;
+}
+
+.wrong-letters-container {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.wrong-letters-container p {
+    margin: 0 0 0.5rem;
+}
+
+.wrong-letters-container span {
+    font-size: 1.5rem;
+}
+
+.word {
+    display: flex;
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.word-letter {
+    border-bottom: 3px solid #1B9CFC;
+    display: inline-flex;
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.25rem;
+    height: 3rem;
+    width: 1.25rem;
 }
