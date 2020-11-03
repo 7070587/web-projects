@@ -1,0 +1,16 @@
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 130%;
+    position: relative;
+    padding: 2.5rem 1rem;
+    text-align: center;
+}
+
+.header__title {
+    margin: 0;
+}
+
+.header__content {
+    margin: 2rem 0;
+}
