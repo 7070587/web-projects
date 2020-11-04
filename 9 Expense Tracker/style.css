@@ -1,5 +1,152 @@
+:root {
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 * {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     margin: 0;
+}
+
+.container {
+    margin: 2rem auto;
+    width: 22rem;
+}
+
+h1 {
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+h3 {
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 0.75rem;
+    margin: 2.5rem 0 0.75rem;
+}
+
+h4 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.income-expense-container {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 1.25rem 0;
+}
+
+.income-expense-container__item {
+    flex: 1;
+    text-align: center;
+}
+
+.income-expense-container__item--first {
+    border-right: 1px solid #dedede;
+}
+
+.money {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    margin: 0.3em 0;
+}
+
+.money-plus {
+    color: #2ecc71;
+}
+
+.money-minus {
+    color: #d63031;
+}
+
+label {
+    display: inline-block;
+    margin: 0.75rem 0;
+    font-weight: bold;
+}
+
+input[type='text'],
+input[type='number'] {
+    border: 1px solid #dedede;
+    border-radius: 0.25rem;
+    display: block;
+    padding: 0.65rem;
+    width: 100%;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: #a29bfe;
+    color: #fff;
+    box-shadow: var(--box-shadow);
+    border: 0;
+    outline: 0;
+    display: block;
+    border-radius: 0.25rem;
+    padding: 0.65rem;
+    margin: 0.75rem 0 2rem;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #9c88ff;
+}
+
+.list {
+    list-style-type: none;
     padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.list__item {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+}
+
+.list__item--plus {
+    border-right: 5px solid #2ecc71;
+}
+
+.list__item--minus {
+    border-right: 5px solid #d63031;
+}
+
+.btn-delete {
+    background-color: #ff5e57;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    padding: 2px 6px 4.5px 7.5px;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #d63031;
+}
+
+.list__item:hover .btn-delete {
+    opacity: 1;
 }
