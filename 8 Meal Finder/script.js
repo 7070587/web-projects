@@ -69,16 +69,16 @@ function addMealToDOM(meal) {
   singleMealEle.innerHTML = `
     <div class="single__meal">
       <h1>${meal.strMeal}</h1>
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+      <img class="single__meal-img" src="${meal.strMealThumb}" alt="${meal.strMeal}" />
       <div class="single__meal-info">
-        ${meal.strCategory ? `<p>${meal.strCategory}</p>` : ""}
-        ${meal.strArea ? `<p>${meal.strArea}</p>` : ""}
+        ${meal.strCategory ? `<p class="single__meal-content">${meal.strCategory}</p>` : ""}
+        ${meal.strArea ? `<p class="single__meal-content">${meal.strArea}</p>` : ""}
       </div>
       <div class="main">
         <p>${meal.strInstructions}</p>
         <h2>Ingredients</h2>
-        <ul>
-          ${ingredients.map((ingredient) => `<li>${ingredient}</li>`).join("")}
+        <ul class="ingredient">
+          ${ingredients.map((ingredient) => `<li class="ingredient-item">${ingredient}</li>`).join("")}
         </ul>
       </div>
     </div>
