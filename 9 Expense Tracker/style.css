@@ -85,6 +85,11 @@ input[type='number'] {
     width: 100%;
 }
 
+input[type='text']:focus,
+input[type='number']:focus {
+    border: 1px solid #0fbcf9;
+}
+
 .btn {
     cursor: pointer;
     background-color: #a29bfe;
@@ -97,6 +102,13 @@ input[type='number'] {
     padding: 0.65rem;
     margin: 0.75rem 0 2rem;
     width: 100%;
+}
+
+.btn:disabled {
+    cursor: default;
+    background-color: #a29bfe;
+    /* button disabled remove hover */
+    pointer-events: none;
 }
 
 .btn:hover {

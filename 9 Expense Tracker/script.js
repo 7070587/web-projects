@@ -5,6 +5,7 @@ const list = document.getElementById("list");
 const form = document.getElementById("form");
 const text = document.getElementById("text");
 const amount = document.getElementById("amount");
+const submitBtn = document.getElementById("submit");
 
 const dummyTransactions = [
   { id: 1, text: "Flower", amount: -20 },
@@ -38,33 +39,73 @@ function addTransactionDOM(transaction) {
 }
 
 // update balance, income and expense
-function updateBalanceValues() {
+function updateTransactionValues() {
   // get every amount
   const amounts = transactions.map((transaction) => transaction.amount);
 
   // get total amount
-  const totalAmount = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+  const totalAmount = amounts.reduce((acc, item) => (acc += item), 0);
 
   // get total income
-  const income = amounts
-    .filter((item) => item > 0)
-    .reduce((acc, itemIncome) => (acc += itemIncome), 0)
-    .toFixed(2);
-
+  const income = amounts.filter((item) => item > 0).reduce((acc, itemIncome) => (acc += itemIncome), 0);
   // get total expense
-  const expense = (amounts.filter((item) => item < 0).reduce((acc, itemExpense) => (acc += itemExpense), 0) * -1).toFixed(2);
+  const expense = amounts.filter((item) => item < 0).reduce((acc, itemExpense) => (acc += itemExpense), 0);
 
   // count balance
-  balance.innerText = `$${totalAmount}`;
-  moneyPlus.innerText = `$${income}`;
-  moneyMinus.innerText = `$${expense}`;
+  balance.innerText = `$${totalAmount.toFixed(2)}`;
+  moneyPlus.innerText = `$${income.toFixed(2)}`;
+  moneyMinus.innerText = `$${(expense * -1).toFixed(2)}`;
 }
+
+// add new transactions
+function addTransaction(e) {
+  e.preventDefault();
+
+  // get transaction data
+  const transaction = {
+    id: generateID(),
+    text: text.value,
+    amount: +amount.value,
+  };
+
+  transactions.push(transaction);
+
+  addTransactionDOM(transaction);
+
+  updateTransactionValues();
+
+  // clear transaction vlaue
+  text.value = "";
+  amount.value = "";
+}
+
+form.addEventListener("submit", addTransaction);
+
+// remove transaction by Id
+function removeTransaction(id) {
+  transactions = transactions.filter((transaction) => transaction.id !== id);
+
+  init();
+}
+
+// Generate random ID
+function generateID() {
+  return Math.floor(Math.random() * 100000000);
+}
+
+// check button disabled or not
+function checkButtonDisabled() {
+  submitBtn.disabled = text.value.trim() && amount.value.trim() ? false : true;
+}
+
+text.addEventListener("input", checkButtonDisabled);
+amount.addEventListener("input", checkButtonDisabled);
 
 // init
 function init() {
   list.innerHTML = "";
   transactions.forEach(addTransactionDOM);
-  updateBalanceValues();
+  updateTransactionValues();
 }
 
 init();
