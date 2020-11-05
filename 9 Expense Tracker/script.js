@@ -7,14 +7,16 @@ const text = document.getElementById("text");
 const amount = document.getElementById("amount");
 const submitBtn = document.getElementById("submit");
 
-const dummyTransactions = [
-  { id: 1, text: "Flower", amount: -20 },
-  { id: 2, text: "Salary", amount: 300 },
-  { id: 3, text: "Book", amount: -10 },
-  { id: 4, text: "Camera", amount: 150 },
-];
+// const dummyTransactions = [
+//   { id: 1, text: "Flower", amount: -20 },
+//   { id: 2, text: "Salary", amount: 300 },
+//   { id: 3, text: "Book", amount: -10 },
+//   { id: 4, text: "Camera", amount: 150 },
+// ];
 
-let transactions = dummyTransactions;
+const localStorageTransactions = JSON.parse(localStorage.getItem("transactions"));
+
+let transactions = localStorage.getItem("transactions") !== null ? localStorageTransactions : [];
 
 // add transactions to DOM list
 function addTransactionDOM(transaction) {
@@ -74,6 +76,8 @@ function addTransaction(e) {
 
   updateTransactionValues();
 
+  updateLocalStorageTransactions();
+
   // clear transaction vlaue
   text.value = "";
   amount.value = "";
@@ -84,6 +88,8 @@ form.addEventListener("submit", addTransaction);
 // remove transaction by Id
 function removeTransaction(id) {
   transactions = transactions.filter((transaction) => transaction.id !== id);
+
+  updateLocalStorageTransactions();
 
   init();
 }
@@ -96,6 +102,11 @@ function generateID() {
 // check button disabled or not
 function checkButtonDisabled() {
   submitBtn.disabled = text.value.trim() && amount.value.trim() ? false : true;
+}
+
+// update localStorage transactions
+function updateLocalStorageTransactions() {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
 }
 
 text.addEventListener("input", checkButtonDisabled);
