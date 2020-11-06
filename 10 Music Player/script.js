@@ -35,7 +35,7 @@ function playSong() {
   audio.play();
 }
 
-//pause  song
+// pause  song
 function pauseSong() {
   musicContainer.classList.remove("play");
   btnPlay.querySelector("i.fas").classList.remove("fa-pause");
@@ -44,10 +44,66 @@ function pauseSong() {
   audio.pause();
 }
 
+// prev song
+function prevSong() {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// next song
+function nextSong() {
+  songIndex++;
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// update progress bar
+function updateProgress(e) {
+  const { duration, currentTime } = e.srcElement;
+  const progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
+}
+
+// set progress bar
+function setProgress(e) {
+  // get progress bar length
+  const width = this.clientWidth;
+
+  // get click length value
+  const clickX = e.offsetX;
+
+  // get complete duration
+  const duration = audio.duration;
+
+  // set current
+  audio.currentTime = (clickX / width) * duration;
+}
+
+// time/song update
+audio.addEventListener("timeupdate", updateProgress);
+
+// click on progress bar
+progressContainer.addEventListener("click", setProgress);
+
 // play song;
 btnPlay.addEventListener("click", () => {
   // check music is play or not
   const isPlaying = musicContainer.classList.contains("play");
-
   isPlaying ? pauseSong() : playSong();
 });
+
+// change stopPropagation();
+btnPrev.addEventListener("click", prevSong);
+btnNext.addEventListener("click", nextSong);
+
+// song end
+audio.addEventListener("ended", nextSong);
