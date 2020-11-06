@@ -52,3 +52,17 @@ window.addEventListener("scroll", () => {
     showLoading();
   }
 });
+
+// filter data
+function filterPosts(e) {
+  const term = e.target.value.toLowerCase().trim();
+  const posts = document.querySelectorAll(".post");
+
+  posts.forEach((post) => {
+    const title = post.querySelector(".post__title").innerText.toLowerCase();
+    const body = post.querySelector(".post__body").innerText.toLowerCase();
+    post.style.display = title.indexOf(term) > -1 || body.indexOf(term) > -1 ? "flex" : "none";
+  });
+}
+
+filter.addEventListener("input", filterPosts);
