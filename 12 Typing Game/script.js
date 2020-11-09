@@ -64,13 +64,43 @@ function addWordToDOM() {
 
 addWordToDOM();
 
+// focus on text start
+text.focus();
+
+// start count down, every call updateTime()
+const timeInterval = setInterval(updateTime, 1000);
+
+// update time
+function updateTime() {
+  time--;
+  timeEle.innerText = `${time}s`;
+
+  if (time === 0) {
+    clearInterval(timeInterval);
+    // end game
+    gameOver();
+  }
+}
+
+// game over and show wnd screen
+function gameOver() {
+  endgameEle.innerHTML = `
+        <h1>Time ran out</h1>
+        <p>Your final score is ${score}</p>
+        <button onclick="location.reload()">Reload</button>
+  `;
+
+  endgameEle.style.display = "flex";
+}
+
 // get input data
 text.addEventListener("input", (e) => {
   const insertText = e.target.value;
 
   if (insertText === randomWord) {
     // update score
-    +scoreEle.innerText++;
+    score++;
+    scoreEle.innerText = score;
 
     // clear input value
     e.target.value = "";
