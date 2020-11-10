@@ -67,8 +67,8 @@ function createBox(item) {
   const { image, text } = item;
   box.classList.add("box");
   box.innerHTML = `
-    <img src="${image}" alt="${text}" />
-    <p class="info">${text}</p>
+    <img src="${image}" alt="${text}" class="box__image"/>
+    <p class="box__info">${text}</p>
   `;
 
   // todo speak event
