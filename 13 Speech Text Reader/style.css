@@ -57,6 +57,11 @@ h1 {
     transition: all 1s ease-in-out;
 }
 
+.text__box.show {
+    transform: translate(-50%, 0);
+
+}
+
 .text__box-voices {
     background-color: var(--primaryColor);
     border-radius: 0.25rem;

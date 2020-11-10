@@ -75,3 +75,30 @@ function createBox(item) {
 
   main.appendChild(box);
 }
+
+//store voices
+let voices = [];
+
+function getVoices() {
+  voices = speechSynthesis.getVoices();
+
+  voices.forEach((voice) => {
+    const option = document.createElement("option");
+
+    option.value = voice.name;
+    option.innerText = `${voice.name} ${voice.lang}`;
+
+    selectVoices.appendChild(option);
+  });
+}
+
+// voice change
+speechSynthesis.addEventListener("voiceschanged", getVoices);
+
+// toggle text box
+btnToggle.addEventListener("click", () => textBox.classList.toggle("show"));
+
+// close button
+btnClose.addEventListener("click", () => textBox.classList.remove("show"));
+
+getVoices();
