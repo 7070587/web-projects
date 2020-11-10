@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>12 Typing Game</title>
+</head>
+
+<body>
+    <button id="btn-settings" class="btn-settings">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <div class="settings" id="settings">
+        <form id="settings__form">
+            <label for="difficulty">Difficulty</label>
+            <select id="settings__difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2 class="container__title">👩‍💻 Speed Typer 👨‍💻</h2>
+        <small>Type the following:</small>
+
+        <h1 id="word" class="container__word"></h1>
+
+        <input type="text" id="text" autocomplete="off" placeholder="Type the word here..." />
+
+        <p class="time__container">Time left: <span id="time">10s</span></p>
+
+        <p class="score__container">Score: <span id="score">0</span></p>
+
+        <div id="end-game__container" class="end-game__container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
