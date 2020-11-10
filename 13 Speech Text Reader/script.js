@@ -8,6 +8,7 @@ const btnToggle = document.getElementById("btn-toggle");
 const btnRead = document.getElementById("btn-read");
 const btnClose = document.getElementById("text__box-close");
 
+// init box image data
 const data = [
   {
     image: "./images/drink.jpg",
@@ -61,6 +62,9 @@ const data = [
 
 data.forEach(createBox);
 
+// init speech synth
+const message = new SpeechSynthesisUtterance();
+
 // create speech box
 function createBox(item) {
   const box = document.createElement("div");
@@ -71,9 +75,26 @@ function createBox(item) {
     <p class="box__info">${text}</p>
   `;
 
-  // todo speak event
+  box.addEventListener("click", () => {
+    setTextMessage(text);
+    speakMessage();
+
+    // add active class
+    box.classList.add("active");
+    setTimeout(() => box.classList.remove("active"), 800);
+  });
 
   main.appendChild(box);
+}
+
+// set text
+function setTextMessage(text) {
+  message.text = text;
+}
+
+// speak message
+function speakMessage() {
+  speechSynthesis.speak(message);
 }
 
 //store voices
