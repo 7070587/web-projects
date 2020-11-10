@@ -65,6 +65,23 @@ data.forEach(createBox);
 // init speech synth
 const message = new SpeechSynthesisUtterance();
 
+//store voices
+let voices = [];
+
+function getVoices() {
+  voices = speechSynthesis.getVoices();
+
+  voices.forEach((voice) => {
+    const option = document.createElement("option");
+
+    option.value = voice.name;
+    option.innerText = `${voice.name} ${voice.lang}`;
+
+    selectVoices.appendChild(option);
+  });
+}
+getVoices();
+
 // create speech box
 function createBox(item) {
   const box = document.createElement("div");
@@ -97,20 +114,9 @@ function speakMessage() {
   speechSynthesis.speak(message);
 }
 
-//store voices
-let voices = [];
-
-function getVoices() {
-  voices = speechSynthesis.getVoices();
-
-  voices.forEach((voice) => {
-    const option = document.createElement("option");
-
-    option.value = voice.name;
-    option.innerText = `${voice.name} ${voice.lang}`;
-
-    selectVoices.appendChild(option);
-  });
+// set voice
+function setVoice(e) {
+  message.voice = voices.find((voice) => voice.name === e.target.value);
 }
 
 // voice change
@@ -122,4 +128,11 @@ btnToggle.addEventListener("click", () => textBox.classList.toggle("show"));
 // close button
 btnClose.addEventListener("click", () => textBox.classList.remove("show"));
 
-getVoices();
+// change voice
+selectVoices.addEventListener("change", setVoice);
+
+// read texx button
+btnRead.addEventListener("click", () => {
+  setTextMessage(textarea.value);
+  speakMessage();
+});
