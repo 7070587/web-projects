@@ -80,3 +80,34 @@ function updateCurrentText() {
 }
 
 createCards();
+
+// update next or preventDefault();
+btnNext.addEventListener("click", () => {
+  cardsEles[currentActiveCard].className = "card left";
+
+  currentActiveCard++;
+
+  if (currentActiveCard > cardsEles.length - 1) {
+    currentActiveCard = cardsEles.length - 1;
+  }
+
+  cardsEles[currentActiveCard].className = "card active";
+
+  // show current card
+  updateCurrentText();
+});
+
+btnPrev.addEventListener("click", () => {
+  cardsEles[currentActiveCard].className = "card right";
+
+  currentActiveCard--;
+
+  if (currentActiveCard < 0) {
+    currentActiveCard = 0;
+  }
+
+  cardsEles[currentActiveCard].className = "card active";
+
+  // show current card
+  updateCurrentText();
+});
