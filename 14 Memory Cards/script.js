@@ -9,6 +9,7 @@ const btnAddCard = document.getElementById("add-card");
 const questionEle = document.getElementById("question");
 const answerEle = document.getElementById("answer");
 
+const navEle = document.getElementById("nav");
 const currentEle = document.getElementById("nav__current");
 
 const cardsContainer = document.getElementById("cards-container");
@@ -22,20 +23,51 @@ let currentActiveCard = 0;
 const cardsEles = [];
 
 // store card data
-const cardsData = [
-  {
-    question: "What must a variable begin with?",
-    answer: "A letter, $ or _",
-  },
-  {
-    question: "What is a variable?",
-    answer: "Container for a piece of data",
-  },
-  {
-    question: "Example of Case Sensitive Variable",
-    answer: "thisIsAVariable",
-  },
-];
+const cardsData = getCardsData();
+// const cardsData = [
+//   {
+//     question: "What must a variable begin with?",
+//     answer: "A letter, $ or _",
+//   },
+//   {
+//     question: "What is a variable?",
+//     answer: "Container for a piece of data",
+//   },
+//   {
+//     question: "Example of Case Sensitive Variable",
+//     answer: "thisIsAVariable",
+//   },
+// ];
+
+// get data from local storage
+function getCardsData() {
+  const cards = JSON.parse(localStorage.getItem("cards"));
+  return cards === null ? [] : cards;
+}
+
+// add card to localStorage
+function serCardsData(cards) {
+  localStorage.setItem("cards", JSON.stringify(cards));
+  window.location.reload();
+}
+
+// check if prec and next button can click
+btnPrev.disabled = cardsData.length > 1 ? false : true;
+btnNext.disabled = cardsData.length > 1 ? false : true;
+
+function checkNextAndPrevButton() {
+  btnPrev.disabled = cardsData.length > 1 ? false : true;
+  btnNext.disabled = cardsData.length > 1 ? false : true;
+
+  btnNext.disabled = currentActiveCard >= cardsEles.length - 1 ? true : false;
+  btnPrev.disabled = currentActiveCard <= 0 ? true : false;
+}
+
+function showNav() {
+  cardsData.length <= 0 ? navEle.classList.add("hide") : navEle.classList.remove("hihe");
+}
+
+showNav();
 
 // create all cards
 function createCards() {
@@ -87,6 +119,8 @@ btnNext.addEventListener("click", () => {
 
   currentActiveCard++;
 
+  checkNextAndPrevButton();
+
   if (currentActiveCard > cardsEles.length - 1) {
     currentActiveCard = cardsEles.length - 1;
   }
@@ -102,6 +136,8 @@ btnPrev.addEventListener("click", () => {
 
   currentActiveCard--;
 
+  checkNextAndPrevButton();
+
   if (currentActiveCard < 0) {
     currentActiveCard = 0;
   }
@@ -110,4 +146,46 @@ btnPrev.addEventListener("click", () => {
 
   // show current card
   updateCurrentText();
+});
+
+// show add container
+btnShow.addEventListener("click", () => addContainer.classList.add("show"));
+
+// hide add container
+btnHide.addEventListener("click", () => addContainer.classList.remove("show"));
+
+// add new card
+
+//check if can click add button
+
+function checkSubmitCardButton() {
+  btnAddCard.disabled = questionEle.value.trim() && answerEle.value.trim() ? false : true;
+}
+
+checkSubmitCardButton();
+questionEle.addEventListener("input", checkSubmitCardButton);
+answerEle.addEventListener("input", checkSubmitCardButton);
+
+btnAddCard.addEventListener("click", () => {
+  const question = questionEle.value.trim();
+  const answer = answerEle.value.trim();
+
+  cardsData.push({ question, answer });
+  createCard({ question, answer });
+
+  questionEle.value = "";
+  answerEle.value = "";
+
+  addContainer.classList.remove("show");
+
+  serCardsData(cardsData);
+});
+
+// clear all card
+btnClear.disabled = cardsData.length === 0 ? true : false;
+
+btnClear.addEventListener("click", () => {
+  localStorage.clear();
+  cardsContainer.innerHTML = "";
+  window.location.reload();
 });

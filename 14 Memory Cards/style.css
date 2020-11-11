@@ -63,6 +63,11 @@ h1 button {
     left: 2rem;
 }
 
+.btn-clear:disabled {
+    pointer-events: none;
+}
+
+
 .cards {
     perspective: 1000px;
     position: relative;
@@ -156,6 +161,10 @@ h1 button {
     margin: 1.25rem 0;
 }
 
+.hide {
+    display: none;
+}
+
 .nav__button {
     border: 0;
     background-color: transparent;
@@ -164,6 +173,10 @@ h1 button {
 
 .nav__button:hover {
     color: #888;
+}
+
+.nav__button:disabled {
+    pointer-events: none;
 }
 
 #nav__current {
@@ -207,4 +220,13 @@ h1 button {
     padding: 0.75rem;
     min-width: 31rem;
     max-width: 100%;
+    outline: 0;
+}
+
+.form__group textarea:focus {
+    border: 1px solid #45aaf2;
+}
+
+#add-card:disabled {
+    pointer-events: none;
 }
