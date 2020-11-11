@@ -1,3 +1,210 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    position: relative;
+}
+
+h1 button {
+    position: absolute;
+    right: 0;
+    transform: translate(120%, -50%);
+    z-index: 2;
+}
+
+.btn {
+    cursor: pointer;
+    outline: 0;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    margin-top: 1.25rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn:hover {
+    background-color: #fafafa;
+}
+
+.btn-small {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+}
+
+.btn-ghost {
+    border: 0;
+    background-color: transparent;
+}
+
+.btn-ghost:hover {
+    border: 0;
+    background-color: transparent;
+    color: #888;
+}
+
+
+.btn-clear {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.cards {
+    perspective: 1000px;
+    position: relative;
+    height: 18.5rem;
+    width: 31rem;
+    max-width: 100%;
+}
+
+.card {
+    position: absolute;
+    opacity: 0;
+    font-size: 1.5rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(50%) rotateY(-10deg);
+    transition: transform 0.4s ease,
+        opacity 0.4s ease;
+
+}
+
+.card.active {
+    opacity: 1;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateX(0) rotateY(0deg);
+}
+
+.card.left {
+    transform: translateX(-50%) rotateY(10deg);
+}
+
+.inner-card {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 0.25rem;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+}
+
+.card.show-answer .inner-card {
+    transform: rotateX(180deg);
+}
+
+.inner-card-front,
+.inner-card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+.inner-card-front {
+    transform: rotateX(0deg);
+    z-index: 2;
+}
+
+.inner-card-back {
+    transform: rotateX(180deg);
+}
+
+.inner-card-front::after,
+.inner-card-back::after {
+    content: '\f021   Flip';
+    font-family: 'Font Awesome 5 Free',
+        'Gill Sans',
+        'Gill Sans MT',
+        Calibri,
+        'Trebuchet MS',
+        sans-serif;
+    ;
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-weight: bold;
+    color: #ddd;
+    font-size: 1.2rem;
+}
+
+.nav {
+    display: flex;
+    margin: 1.25rem 0;
+}
+
+.nav__button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav__button:hover {
+    color: #888;
+}
+
+#nav__current {
+    margin: 0 2rem;
+}
+
+.add-container {
+    opacity: 0;
+    z-index: -1;
+    background-color: #f0f0f0;
+    border-top: 2px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.add-container.show {
+    opacity: 1;
+    z-index: 2;
+}
+
+.add-container h3 {
+    margin: 0.75rem 0;
+}
+
+.form__group label {
+    display: flex;
+    margin: 1.25rem 0 0.75rem;
+}
+
+.form__group textarea {
+    border: 1px solid #aaa;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    min-width: 31rem;
+    max-width: 100%;
+}
