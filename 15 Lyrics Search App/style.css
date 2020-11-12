@@ -78,6 +78,10 @@ input:focus {
     outline: 0;
 }
 
+.btn-search:disabled {
+    pointer-events: none;
+}
+
 .btn-center {
     transform: scale(1.3);
     margin: 1rem;
