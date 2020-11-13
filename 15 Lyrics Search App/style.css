@@ -59,7 +59,6 @@ input {
     border-radius: 3rem;
     padding: 1rem 2rem;
     width: 100%;
-
 }
 
 input:focus {
@@ -94,6 +93,7 @@ input:focus {
     border: 0;
     border-radius: 0.75rem;
     padding: 0.25rem 0.75rem;
+    margin-right: 1rem;
 }
 
 ul.songs {
@@ -101,7 +101,7 @@ ul.songs {
     padding: 0;
 }
 
-ul songs li {
+ul.songs li {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -125,4 +125,10 @@ ul songs li {
 .centered {
     display: flex;
     justify-content: center;
+}
+
+@media(max-width: 500px) {
+    .container {
+        padding: 1rem;
+    }
 }
