@@ -20,8 +20,6 @@ async function searchSongs(searchValue) {
   const res = await fetch(`${apiURL}/suggest/${searchValue}`);
   const data = await res.json();
 
-  console.log(" => ", data);
-
   if (data) showData(data);
 }
 
@@ -63,6 +61,31 @@ async function getMoreSongs(url) {
   if (data) showData(data);
 }
 
+// get lyrics button click
+result.addEventListener("click", (e) => {
+  const cliclEle = e.target;
+
+  if (cliclEle.tagName === "BUTTON") {
+    const artist = cliclEle.getAttribute("data-artist");
+    const songTitle = cliclEle.getAttribute("data-songtitle");
+
+    getLyrics(artist, songTitle);
+  }
+});
+
+// get detail lyrics
+async function getLyrics(artist, songTitle) {
+  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
+  const data = await res.json();
+
+  const lyrics = data.lyrics.replace(/\r\n|\r|\n/g, "<br>");
+  result.innerHTML = `<h2><strong>${artist}</strong> - ${songTitle}</h2>
+  <span class='lyrics'>${lyrics}</span>`;
+
+  more.innerHTML = "";
+}
+
+// search songs
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 

@@ -127,6 +127,10 @@ ul.songs li {
     justify-content: center;
 }
 
+.lyrics {
+    line-height: 1.5;
+}
+
 @media(max-width: 500px) {
     .container {
         padding: 1rem;
