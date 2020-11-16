@@ -54,8 +54,6 @@ for (let i = 0; i < brickRowCount; i++) {
   }
 }
 
-console.log(" => ", bricks);
-
 // draw ball on canvas
 function drawBall() {
   ctx.beginPath();
@@ -95,13 +93,57 @@ function drawBricks() {
 
 // darw everything
 function drawEevrything() {
+  // clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   drawBall();
   drawPaddle();
   drawScore();
   drawBricks();
 }
 
-drawEevrything();
+// move paddle on canvas
+function movePaddle() {
+  paddle.x += paddle.dx;
+
+  // wall detection
+  if (paddle.x + paddle.w > canvas.width) {
+    paddle.x = canvas.width - paddle.w;
+  }
+
+  if (paddle.x < 0) {
+    paddle.x = 0;
+  }
+}
+
+// update canvas draw and animation
+function update() {
+  movePaddle();
+
+  // darw everything
+  drawEevrything();
+
+  requestAnimationFrame(update);
+}
+
+update();
+
+function keyDown(e) {
+  if (e.key === "ArrowRight" || e.key === "Right") {
+    paddle.dx = paddle.speed;
+  } else if (e.key === "ArrowLeft" || e.key === "Left") {
+    paddle.dx = -paddle.speed;
+  }
+}
+
+function keyUp(e) {
+  if (e.key === "ArrowRight" || e.key === "Right" || e.key === "ArrowLeft" || e.key === "Left") {
+    paddle.dx = 0;
+  }
+}
+
+document.addEventListener("keydown", keyDown);
+document.addEventListener("keyup", keyUp);
 
 // rules and close
 btnRules.addEventListener("click", () => rules.classList.add("show"));
