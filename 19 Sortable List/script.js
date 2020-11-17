@@ -30,11 +30,12 @@ function createList() {
       const listItem = document.createElement("li");
 
       listItem.setAttribute("data-index", index);
+      listItem.classList.add("draggable-item");
 
       listItem.innerHTML = `
-        <span class="number">${index + 1}</span>
+        <span class="draggable-number">${index + 1}</span>
         <div class="draggable" draggable="true">
-          <p class="person-name">${person}</p>
+          <p class="draggable-person-name">${person}</p>
           <i class="fas fa-grip-lines"></i>
         </div>
       `;
