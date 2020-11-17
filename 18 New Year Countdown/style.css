@@ -38,8 +38,20 @@ h1 {
     margin: -80px 0 40px;
 }
 
+.year {
+    font-size: 200px;
+    z-index: -1;
+    opacity: 0.2;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 .countdown {
-    display: flex;
+    /* display: flex; */
+    display: none;
     transform: scale(2);
 }
 
@@ -57,7 +69,7 @@ h1 {
 
 @media(max-width: 500px) {
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .countdown__time {
