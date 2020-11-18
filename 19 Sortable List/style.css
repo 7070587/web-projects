@@ -55,11 +55,11 @@ body {
     margin: 0 1.25rem 0 0;
 }
 
-.draggable-person-name.right {
+.draggable-item.right .draggable-person-name {
     color: #3ae374
 }
 
-.draggable-person-name.error {
+.draggable-item.error .draggable-person-name {
     color: #ff3838
 }
 
