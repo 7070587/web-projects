@@ -32,7 +32,18 @@ p {
     background-color: #f4f4f4;
     border-radius: 0.25rem;
     margin-top: 0.65rem;
+    outline: 0;
+    cursor: pointer;
 }
+
+.play-again:hover {
+    font-weight: bold;
+}
+
+.play-again:active {
+    transform: scale(0.98);
+}
+
 
 .msg {
     font-size: 1.5rem;
