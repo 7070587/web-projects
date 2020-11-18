@@ -39,6 +39,7 @@ ul li {
 
 ul li label {
     margin-left: 0.4rem;
+    cursor: pointer;
 }
 
 button {
@@ -51,7 +52,6 @@ button {
     font-size: 1.2rem;
     outline: 0;
     cursor: pointer;
-    /* pointer-events: none; */
 }
 
 button:hover {
@@ -60,4 +60,11 @@ button:hover {
 
 button:active {
     font-size: 1.3rem;
+}
+
+button:disabled {
+    cursor: default;
+    background-color: #8e44ad;
+    /* button disabled remove hover */
+    pointer-events: none;
 }
