@@ -26,7 +26,6 @@ function createList() {
     .sort((a, b) => a.sort - b.sort)
     .map((a) => a.value)
     .forEach((person, index) => {
-      console.log(" => ", person);
       const listItem = document.createElement("li");
 
       listItem.setAttribute("data-index", index);
@@ -43,6 +42,61 @@ function createList() {
       listItems.push(listItem);
       draggableList.appendChild(listItem);
     });
+
+  addEventListener();
 }
 
 createList();
+
+function addEventListener() {
+  const draggables = document.querySelectorAll(".draggable");
+  const dragListItem = document.querySelectorAll(".draggable-list .draggable-item");
+
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", dragStart);
+  });
+
+  dragListItem.forEach((item) => {
+    item.addEventListener("dragover", dragOver);
+    item.addEventListener("drop", dragDrop);
+    item.addEventListener("dragenter", dragEnter);
+    item.addEventListener("dragleave", dragLeave);
+  });
+}
+
+function dragStart() {
+  //   console.log("dragStart => ");
+  // Element.closest() 方法用來獲取：匹配特定選擇器且離當前元素最近的祖先元素（也可以是當前元素本身）。如果匹配不到，則返回 null。
+  dragStartIndex = +this.closest("li").getAttribute("data-index");
+}
+
+function dragEnter() {
+  //   console.log("dragEnter => ");
+  this.classList.add("over");
+}
+
+function dragLeave(e) {
+  //   console.log("dragLeave => ");
+  this.classList.remove("over");
+  e.preventDefault();
+}
+
+function dragOver(e) {
+  //   console.log("dragOver => ");
+  e.preventDefault();
+}
+
+function dragDrop() {
+  //   console.log("dragDrop => ");
+  const dragEndIndex = +this.getAttribute("data-index");
+  swapItems(dragStartIndex, dragEndIndex);
+  this.classList.remove("over");
+}
+
+function swapItems(fromIndex, toIndex) {
+  const itemStart = listItems[fromIndex].querySelector(".draggable");
+  const itemEnd = listItems[toIndex].querySelector(".draggable");
+
+  listItems[fromIndex].appendChild(itemEnd);
+  listItems[toIndex].appendChild(itemStart);
+}
