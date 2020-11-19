@@ -42,8 +42,6 @@ const quizData: IQuizData[] = [
   },
 ];
 
-let currentQuestion: number = 0;
-
 const quiz: HTMLElement = document.getElementById("quiz");
 const answerEls: NodeList = document.querySelectorAll(".answer");
 const questionEl: HTMLElement = document.getElementById("question");
@@ -55,7 +53,11 @@ const d_text: HTMLElement = document.getElementById("d_text");
 
 const btnSubmit: HTMLElement = document.getElementById("submit");
 
+let currentQuestion: number = 0;
+let score: number = 0;
+
 function loadQuiz() {
+  deselectAnswers();
   const currentQuizData = quizData[currentQuestion];
   questionEl.innerHTML = currentQuizData.question;
 
@@ -68,16 +70,40 @@ function loadQuiz() {
 loadQuiz();
 
 btnSubmit.addEventListener("click", () => {
-  currentQuestion++;
-  if (currentQuestion < quizData.length) {
-    loadQuiz();
-  } else {
-    // show result
+  // check to see the answer
+  const answer = getSelectedAnswer();
+
+  if (answer) {
+    if (answer === quizData[currentQuestion].correct) {
+      score++;
+    }
+    currentQuestion++;
+
+    if (currentQuestion < quizData.length) {
+      loadQuiz();
+    } else {
+      quiz.innerHTML = `
+        <h2 class='final'>You answered correctly at ${score}/${quizData.length} questions.</h2>
+        <button onclick="location.reload()">Reload</button>
+        `;
+    }
   }
 });
 
-// answerEls.forEach((ele) => {
-//   ele.addEventListener("checkCheckbox", () => {
-//     console.log(" => ", ele);
-//   });
-// });
+// get answer
+function getSelectedAnswer(): string {
+  let answer: string = "";
+  answerEls.forEach((answerEl: any) => {
+    if (answerEl.checked) {
+      answer = answerEl.id;
+    }
+  });
+  return answer;
+}
+
+//
+function deselectAnswers() {
+  answerEls.forEach((answerEl: HTMLInputElement) => {
+    answerEl.checked = false;
+  });
+}
