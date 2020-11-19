@@ -68,3 +68,9 @@ button:disabled {
     /* button disabled remove hover */
     pointer-events: none;
 }
+
+.final {
+    padding: 2rem;
+    text-align: center;
+    margin: 0;
+}
