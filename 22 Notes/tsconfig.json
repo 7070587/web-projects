@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "noImplicitAny": false,
-        "module": "amd",
+        "target": "esnext",
+        "module": "esnext",
+		"noImplicitAny": false,
         "removeComments": false,
         "sourceMap": true
     }
