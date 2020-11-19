@@ -2,9 +2,18 @@ const btnAdd: HTMLElement = document.getElementById("btn-add");
 
 const notesEle: HTMLElement = document.getElementById("notes");
 
+const notes: string[] = JSON.parse(localStorage.getItem("notes"));
+
+// add localStorage to DOM
+function addLocalStorageToDOM() {
+  (notes || []).forEach((note) => addNewNote(note));
+}
+
+addLocalStorageToDOM();
+
 btnAdd.addEventListener("click", () => addNewNote());
 
-function addNewNote() {
+function addNewNote(noteData: string = "") {
   const note = document.createElement("div");
   note.classList.add("notes");
 
@@ -23,7 +32,10 @@ function addNewNote() {
   const btnDelete: HTMLElement = note.querySelector(".fa-trash-alt");
 
   const main: HTMLElement = note.querySelector(".notes__main");
-  const textarea: HTMLElement = note.querySelector(".notes__main-textarea");
+  const textarea: HTMLTextAreaElement = note.querySelector(".notes__main-textarea");
+
+  main.innerHTML = marked(noteData);
+  textarea.value = noteData;
 
   btnEdit.addEventListener("click", () => {
     main.classList.toggle("hidden");
@@ -32,12 +44,23 @@ function addNewNote() {
 
   btnDelete.addEventListener("click", () => {
     note.remove();
+    updateLocalStorage();
   });
 
   textarea.addEventListener("input", (e: any) => {
     const { value } = e.target;
     main.innerHTML = marked(value);
+
+    updateLocalStorage();
   });
 
   document.body.appendChild(note);
+}
+
+// save data in localStorage
+function updateLocalStorage() {
+  const allTextareas: NodeList = document.querySelectorAll(".notes__main-textarea");
+  const notes: string[] = [];
+  allTextareas.forEach((allTextarea: HTMLTextAreaElement) => notes.push(allTextarea.value));
+  localStorage.setItem("notes", JSON.stringify(notes));
 }
