@@ -8,6 +8,22 @@ body {
     background-color: #3c40c6;
 }
 
+header {
+    background-color: #575fcf;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+
+.search {
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 3rem;
+    outline: 0;
+    text-indent: 0.5rem;
+}
+
+
 .main {
     display: flex;
     flex-wrap: wrap;
