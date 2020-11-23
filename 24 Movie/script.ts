@@ -43,7 +43,7 @@ function showMovieToDOM(movie: any[]) {
   // clear main movie data
   main.innerHTML = "";
   (movie || []).forEach((movie) => {
-    const { poster_path, title, vote_average } = movie;
+    const { poster_path, title, vote_average, overview } = movie;
     const movieEle: HTMLElement = document.createElement("div");
     movieEle.classList.add("movie");
 
@@ -53,6 +53,7 @@ function showMovieToDOM(movie: any[]) {
             <h3 class="movie__title">${title}</h3>
             <span class="movie__score ${getClassByScore(vote_average)}">${vote_average}</span>
         </div>
+        <div class='movie__overview'><h3>Overview:</h3>${overview}</div>
       `;
     main.appendChild(movieEle);
   });
@@ -95,6 +96,7 @@ next.addEventListener("click", (e) => {
   getMovies(url);
 });
 
+// input page number
 pageSearch.addEventListener("input", () => {
   const searchValue: string = pageSearch.value.trim();
   const url: string = `${PAGEURL}${searchValue}`;
