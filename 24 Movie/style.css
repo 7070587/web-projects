@@ -1,3 +1,59 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    background-color: #3c40c6;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie {
+    background-color: #575fcf;
+    width: 315px;
+    border-radius: 4px;
+    box-shadow: 0 4px 5px (0, 0, 0, 0.2);
+    margin: 2rem;
+}
+
+.movie__img {
+    width: 100%;
+}
+
+.movie__info {
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    letter-spacing: 1px;
+}
+
+.movie__title {
+    margin: 0;
+    margin-right: 1rem;
+}
+
+.movie__score {
+    background-color: #1e3799;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.movie__score-green {
+    color: #26de81
+}
+
+.movie__score-orange {
+    color: #fd9644
+}
+
+.movie__score-red {
+    color: #eb3b5a
+}
