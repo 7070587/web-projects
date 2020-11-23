@@ -11,8 +11,46 @@ body {
 header {
     background-color: #575fcf;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 1.5rem;
+}
+
+.page {
+    display: flex;
+    color: #fff;
+}
+
+button {
+    /* margin-left: 1rem; */
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #3c40c6;
+}
+
+button:disabled {
+    pointer-events: none;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.page-search {
+    outline: 0;
+    border-radius: 0.3rem;
+    width: 5rem;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .search {
@@ -72,4 +110,8 @@ header {
 
 .movie__score-red {
     color: #eb3b5a
+}
+
+.hide {
+    display: none;
 }

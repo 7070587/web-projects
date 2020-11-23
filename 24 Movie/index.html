@@ -10,9 +10,19 @@
 
 <body>
     <header>
-        <form id="form">
-            <input type="text" id="search" placeholder="Search" class="search" />
-        </form>
+        <div class='page'>
+            <button id="prev">Prev</button>
+            <input type="number" id="page-search" class="page-search" min='1' value="1" />
+            <button id="next">Next</button>
+        </div>
+
+        <div>
+            <form id="form">
+                <input type="text" id="search" placeholder="Search" class="search" />
+            </form>
+        </div>
+
+
     </header>
     <main id="main" class="main">
         <!-- <div class="movie">
