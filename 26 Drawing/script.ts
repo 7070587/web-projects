@@ -49,10 +49,35 @@ canvasSize.addEventListener("input", () => {
   if (+canvasSize.value < 1) canvasSize.value = "1";
 });
 
+// color
 canvasColor.addEventListener("change", (e: any) => {
   color = e.target.value;
   console.log(" => ", color);
 });
+
+// clear canvas
+btnClear.addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+
+// save canvas
+btnSave.addEventListener("click", () => exportCanvasAsPNG("canvas", "canvas-image"));
+
+function exportCanvasAsPNG(id: string, fileName: string) {
+  const canvasElement: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById(id);
+
+  const MIME_TYPE: string = "image/png";
+
+  const imgURL: string = canvasElement.toDataURL(MIME_TYPE);
+
+  const dlLink: any = document.createElement("a");
+
+  dlLink.download = fileName;
+  dlLink.href = imgURL;
+  dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(":");
+
+  document.body.appendChild(dlLink);
+  dlLink.click();
+  document.body.removeChild(dlLink);
+}
 
 // drawCircle(100, 100);
 

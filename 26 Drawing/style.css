@@ -24,6 +24,8 @@ canvas {
     margin: 0 auto;
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
+    padding-right: 0.5rem;
 }
 
 .btn {
@@ -34,6 +36,11 @@ canvas {
     outline: 0;
     width: 3rem;
     cursor: pointer;
+    color: #666;
+}
+
+.btn:hover {
+    color: #000;
 }
 
 .number {
