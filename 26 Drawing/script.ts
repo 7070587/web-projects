@@ -3,28 +3,46 @@ const ctx = canvas.getContext("2d");
 
 const btnIncrease: HTMLElement = document.getElementById("increase");
 const btnDecrease: HTMLElement = document.getElementById("decrease");
+const btnClear: HTMLElement = document.getElementById("clear");
+const btnSave: HTMLElement = document.getElementById("save");
+
 const canvasSize: HTMLInputElement = <HTMLInputElement>document.getElementById("canvasSize");
 const canvasColor: HTMLInputElement = <HTMLInputElement>document.getElementById("color");
 
 let size: number = 5;
 let color: string = "black";
-let x: number = 10;
-let y: number = 10;
+let x: number = undefined;
+let y: number = undefined;
 
 let isPressed: boolean = undefined;
 
-canvas.addEventListener("mousedown", () => (isPressed = true));
-canvas.addEventListener("mouseup", () => (isPressed = false));
+canvas.addEventListener("mousedown", (e) => {
+  isPressed = true;
+
+  x = e.offsetX;
+  y = e.offsetY;
+});
+
+canvas.addEventListener("mouseup", (e) => {
+  isPressed = false;
+
+  x = undefined;
+  y = undefined;
+});
 
 canvas.addEventListener("mousemove", (e) => {
   if (isPressed) {
-    const x: number = e.offsetX;
-    const y: number = e.offsetY;
+    const x2 = e.offsetX;
+    const y2 = e.offsetY;
 
-    drawCircle(x, y);
+    drawCircle(x2, y2);
+    drawLine(x, y, x2, y2);
+    x = x2;
+    y = y2;
   }
 });
 
+// draw circle
 function drawCircle(x: number, y: number): void {
   ctx.beginPath();
   ctx.arc(x, y, size, 0, Math.PI * 2);
@@ -32,6 +50,19 @@ function drawCircle(x: number, y: number): void {
   ctx.fill();
 }
 
+// draw line
+function drawLine(x1: number, y1: number, x2: number, y2: number): void {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = size * 2;
+  ctx.stroke();
+}
+
+// drawLine(100, 100, 200, 200);
+
+// size
 btnIncrease.addEventListener("click", () => {
   size++;
   if (size > 50) size = 50;
@@ -47,6 +78,15 @@ btnDecrease.addEventListener("click", () => {
 canvasSize.addEventListener("input", () => {
   if (+canvasSize.value > 50) canvasSize.value = "50";
   if (+canvasSize.value < 1) canvasSize.value = "1";
+
+  size = +canvasSize.value;
+});
+
+canvasSize.addEventListener("click", () => {
+  if (+canvasSize.value > 50) canvasSize.value = "50";
+  if (+canvasSize.value < 1) canvasSize.value = "1";
+
+  size = +canvasSize.value;
 });
 
 // color
