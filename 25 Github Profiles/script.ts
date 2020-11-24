@@ -10,6 +10,8 @@ async function getUser(user: string): Promise<void> {
   const data = await res.json();
 
   addUserToDOM(data);
+
+  getUserRepos(user);
 }
 
 getUser("7070587");
@@ -33,12 +35,38 @@ function addUserToDOM(userData: any) {
                     <li><strong>${public_repos} Repos</strong></li>
                 </ul>
 
-                <div id="repos"></div>
+                <div id="repos" class='repos'></div>
             </div>
         </div>
     `;
 
   main.innerHTML = cardHTML;
+}
+
+// get user repos
+async function getUserRepos(user: string): Promise<void> {
+  const res: any = await fetch(APIURL + user + "/repos");
+  const data = await res.json();
+
+  addUserReposToDOM(data);
+}
+
+function addUserReposToDOM(reposData: any) {
+  const reposEle: HTMLElement = document.getElementById("repos");
+  (reposData || [])
+    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    .slice(0, 9)
+    .forEach((repo) => {
+      const repoEle: HTMLBaseElement = document.createElement("a");
+      repoEle.classList.add("repo");
+      const { html_url, name } = repo;
+
+      repoEle.href = html_url;
+      repoEle.target = "_blank";
+      repoEle.innerText = name;
+
+      reposEle.appendChild(repoEle);
+    });
 }
 
 // search
