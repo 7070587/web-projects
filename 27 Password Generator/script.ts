@@ -55,7 +55,7 @@ function generateChar(): string {
   if (numberEl.checked) chars.push(getNumber());
   if (symbolEl.checked) chars.push(getSymbol());
 
-  if (!upperEl.checked || lowerEl.checked! || !numberEl.checked || !symbolEl.checked) {
+  if (!upperEl.checked && !lowerEl.checked && !numberEl.checked && !symbolEl.checked) {
     chars.push(getUppercase());
     chars.push(getLowercase());
     chars.push(getNumber());
@@ -74,9 +74,7 @@ btnCopy.addEventListener("click", () => {
   const textarea: HTMLTextAreaElement = document.createElement("textarea");
   const password = pw.innerText;
 
-  if (!password) {
-    return;
-  }
+  if (!password) return false;
 
   textarea.value = password;
   document.body.appendChild(textarea);
