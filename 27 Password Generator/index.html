@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>27 Password Generator</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="pw__header">
+            <div class="pw__header-content">
+                <div id="pw" class="pw__header-pw">=A.Hu#!ec_17V&M </div>
+                <button id="copy" class="copy"><i class="fas fa-copy"></i></button>
+            </div>
+        </div>
+
+        <div class="pw__body">
+            <div class="form-control">
+                <label for="length">Password Length</label>
+                <input id="length" value="15" type="number" min="6" max="40" class="length" />
+            </div>
+
+            <div class="form-control">
+                <label for="upper">Contain Uppercase Letters</label>
+                <input id="upper" type="checkbox" />
+            </div>
+
+            <div class="form-control">
+                <label for="lower">Contain Lowercase Letters</label>
+                <input id="lower" type="checkbox" />
+            </div>
+
+            <div class="form-control">
+                <label for="number">Contain Numbers</label>
+                <input id="number" type="checkbox" />
+            </div>
+
+            <div class="form-control">
+                <label for="symbol">Contain Symbols</label>
+                <input id="symbol" type="checkbox" />
+            </div>
+
+            <button class="generate" id="generate">
+                Generate Password
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
