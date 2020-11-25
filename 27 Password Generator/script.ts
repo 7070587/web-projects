@@ -34,6 +34,11 @@ function generatePassword() {
   const length: number = +lengthEl.value;
   let password: string = "";
 
+  //   if (upperEl.checked) password += getUppercase();
+  //   if (lowerEl.checked) password += getLowercase();
+  //   if (numberEl.checked) password += getNumber();
+  //   if (symbolEl.checked) password += getSymbol();
+
   for (let index = 0; index < length; index++) {
     const char: string = generateChar();
     password += char;
@@ -57,9 +62,26 @@ function generateChar(): string {
     chars.push(getSymbol());
   }
 
-  if (chars.length === 0) return "";
+  if (+lengthEl.value === 0) return "";
 
   return chars[Math.floor(Math.random() * chars.length)];
 }
 
 btnGenerate.addEventListener("click", generatePassword);
+
+// copy password
+btnCopy.addEventListener("click", () => {
+  const textarea: HTMLTextAreaElement = document.createElement("textarea");
+  const password = pw.innerText;
+
+  if (!password) {
+    return;
+  }
+
+  textarea.value = password;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  alert("Password copied to clipboard");
+});
