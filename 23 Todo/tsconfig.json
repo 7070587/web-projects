@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-		"noImplicitAny": false,
-        "removeComments": false,
-        "sourceMap": true
-    }
-}
